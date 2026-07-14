@@ -7,9 +7,14 @@ import 'constants.dart';
 import 'core/utils/app_router.dart';
 
 void main() async {
-  runApp(const MyApp());
+
+  await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
-   await Hive.openBox(KFeaturedBox);
+   await Hive.openBox<BookEntity>(KFeaturedBox);
+   await Hive.openBox<BookEntity>(KNewestBox);
+
+  runApp(const MyApp());
+  
 }
 
 class MyApp extends StatelessWidget {

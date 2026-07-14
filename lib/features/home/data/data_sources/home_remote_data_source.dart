@@ -21,7 +21,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
       endpoint:'volumes?q=subject:programming&printType=books &filter=free-ebooks&orderBy=relevance &maxResults=40&startIndex=0',
     );
     List<BookEntity> books = getBooksList(data);
-    await saveBooksData(books, KFeaturedBox);
+    await saveBooksData(books, KNewestBox);
     return books;
   }
 
@@ -33,6 +33,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
       endpoint:'volumes?q=subject:programming&printType=books &filter=free-ebooks&orderBy=relevance &maxResults=40&startIndex=0',
     );
     List<BookEntity> books = getBooksList(data);
+    await saveBooksData(books, KFeaturedBox);
     return books;
   }
 
