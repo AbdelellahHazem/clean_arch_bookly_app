@@ -16,7 +16,7 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
 
   @override
   List<BookEntity> fetchFeaturedBooks() {
-    // Implement your local data fetching logic here
-    return [];
+    var box = Hive.box<BookEntity>('KFeaturedBox');
+    return box.values.toList();
   }
 }
