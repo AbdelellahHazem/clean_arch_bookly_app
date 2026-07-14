@@ -1,6 +1,9 @@
+import 'package:clean_arch_bookly_app/constants.dart';
 import 'package:clean_arch_bookly_app/core/utils/api_service.dart';
+import 'package:clean_arch_bookly_app/core/utils/functions/save_books.dart';
 import 'package:clean_arch_bookly_app/features/home/data/models/book_model/book_model.dart';
 import 'package:clean_arch_bookly_app/features/home/domain/entities/home_entity.dart';
+
 
 abstract class HomeRemoteDataSource {
   Future<List<BookEntity>> fetchNewestBooks();
@@ -18,10 +21,11 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
       endpoint:'volumes?q=subject:programming&printType=books &filter=free-ebooks&orderBy=relevance &maxResults=40&startIndex=0',
     );
     List<BookEntity> books = getBooksList(data);
+    await saveBooksData(books, KFeaturedBox);
     return books;
   }
 
- 
+  
 
   @override
   Future<List<BookEntity>> fetchFeaturedBooks() async {
