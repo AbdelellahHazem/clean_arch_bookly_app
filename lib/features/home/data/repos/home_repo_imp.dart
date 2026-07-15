@@ -4,6 +4,7 @@ import 'package:clean_arch_bookly_app/features/home/data/data_sources/home_remot
 import 'package:clean_arch_bookly_app/features/home/domain/entities/home_entity.dart';
 import 'package:clean_arch_bookly_app/features/home/domain/repos/home_repo.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 
 class HomeRepoImp extends HomeRepo {
   final HomeRemoteDataSource homeRemoteDataSource;
@@ -24,7 +25,11 @@ class HomeRepoImp extends HomeRepo {
       books = await homeRemoteDataSource.fetchFeaturedBooks();
       return Right(books);
     } catch (e) {
-      return Left(Failure());
+      if(e is DioException){
+        return Left(ServerFailure.fromDioError(e));
+      }
+        return Left(ServerFailure(e.toString()));
+      
     }
   }
 
@@ -39,7 +44,10 @@ class HomeRepoImp extends HomeRepo {
       books = await homeRemoteDataSource.fetchNewestBooks();
       return Right(books);
     } catch (e) {
-      return Left(Failure());
+      if(e is DioException){
+        return Left(ServerFailure.fromDioError(e));
+      }
+        return Left(ServerFailure(e.toString()));
     }
   }
 }
