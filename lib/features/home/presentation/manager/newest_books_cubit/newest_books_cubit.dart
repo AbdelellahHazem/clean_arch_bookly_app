@@ -3,7 +3,7 @@ import 'package:clean_arch_bookly_app/features/home/presentation/manager/newest_
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NewestBooksCubit extends Cubit<NewestBooksState> {
-  NewestBooksCubit({required this.fetchNewestBookUsecase}) : super(NewestBooksInitial());
+  NewestBooksCubit(this.fetchNewestBookUsecase) : super(NewestBooksInitial());
   final FetchNewestBookUsecase fetchNewestBookUsecase;
 
   Future<void> fetchNewestBooks() async {

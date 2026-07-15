@@ -3,7 +3,7 @@ import 'package:clean_arch_bookly_app/features/home/presentation/manager/feature
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
-  FeaturedBooksCubit({required this.fetchFeaturedBookUsecase})
+  FeaturedBooksCubit(this.fetchFeaturedBookUsecase)
     : super(FeaturedBooksInitial());
   final FetchFeaturedBookUsecase fetchFeaturedBookUsecase;
 
